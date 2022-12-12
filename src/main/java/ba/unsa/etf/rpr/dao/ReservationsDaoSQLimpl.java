@@ -128,9 +128,20 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
         return null;
     }
 
+    /**
+     * Method that deletes reservation with matching id
+     * @param id - primary key of entity
+     */
     @Override
     public void delete(int id) {
-
+        String query = "DELETE FROM Reservations WHERE Reservation_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -91,7 +91,7 @@ public class GuestDaoSQLimpl implements GuestDao{
     }
 
     /**
-     * Deletes that deletes guest with matching id
+     * Method that deletes guest with matching id
      * @param id - id of guest to be deleted
      */
     @Override
