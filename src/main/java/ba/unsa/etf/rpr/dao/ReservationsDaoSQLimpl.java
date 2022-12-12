@@ -69,6 +69,7 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
                 reservation.setReservationDate(rs.getDate("Reservation_date"));
                 reservation.setArrivalDate(rs.getDate("Arrival_date"));
                 reservation.setCheckOutDate(rs.getDate("Check_out_date"));
+                reservation.setNumPersons(rs.getInt("Num_persons"));
                 reservation.setGuest(getGuestById(id));
                 rs.close();
                 return reservation;
@@ -83,6 +84,17 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
 
     @Override
     public Reservations add(Reservations item) {
+        String insert = "INSERT INTO Reservations (Reservation_date, Arrival_date, Check_out_date, Num_persons) VALUES(?, ?, ?, ?)";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(insert);
+            stmt.setDate(1, (Date) item.getReservationDate());
+            stmt.setDate(2, (Date) item.getArrivalDate());
+            stmt.setDate(3, (Date) item.getCheckOutDate());
+            stmt.setInt(4, item.getNumPersons());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
