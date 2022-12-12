@@ -12,7 +12,7 @@ public class Guests {
     private String firstName;
     private String lastName;
     private int phone;
-    private int pasportNumber;
+    private int passportNumber;
 
 
     @Override
@@ -22,7 +22,7 @@ public class Guests {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phone=" + phone +
-                ", pasportNumber=" + pasportNumber +
+                ", pasportNumber=" + passportNumber +
                 '}';
     }
 
@@ -71,12 +71,12 @@ public class Guests {
         this.phone = phone;
     }
 
-    public int getPasportNumber(){
-        return pasportNumber;
+    public int getPassportNumber(){
+        return passportNumber;
     }
 
-    public void setPasportNumber() {
-        this.pasportNumber = pasportNumber;
+    public void setPassportNumber(int passportNumber) {
+        this.passportNumber = passportNumber;
     }
 
 }
