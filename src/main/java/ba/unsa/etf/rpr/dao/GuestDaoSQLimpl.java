@@ -35,6 +35,7 @@ public class GuestDaoSQLimpl implements GuestDao{
                 guest.setLastName(rs.getString("lastName"));
                 guest.setPhone(rs.getInt("phone"));
                 guest.setPassportNumber(rs.getInt("passportNumber"));
+                rs.close();
                 return guest;
             }else {
                 return null;
@@ -58,14 +59,33 @@ public class GuestDaoSQLimpl implements GuestDao{
             stmt.setString(2, item.getLastName());
             stmt.setInt(3, item.getPhone());
             stmt.setInt(4, item.getPassportNumber());
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    /**
+     * Method that updates Guest
+     * @param item - item from which values are taken
+     * @param id - id of guest that gets updated
+     * @return updated Guest
+     */
     @Override
-    public Guests update(Guests item) {
+    public Guests update(Guests item, int id) {
+        String query = "UPDATE Guests SET First_name = ?, Last_name = ?, Phone = ?, Passport_number = ? WHERE Guest_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setString(1, item.getFirstName());
+            stmt.setString(2, item.getLastName());
+            stmt.setInt(3, item.getPhone());
+            stmt.setInt(4, item.getPassportNumber());
+            stmt.setInt(5, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
