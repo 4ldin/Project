@@ -23,7 +23,25 @@ public class GuestDaoSQLimpl implements GuestDao{
 
     @Override
     public Guests getById(int id) {
-        return null;
+        String query = "SELECT * FROM Guests WHERE id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Guests guest = new Guests();
+                guest.setId(rs.getInt("id"));
+                guest.setFirstName(rs.getString("firstName"));
+                guest.setLastName(rs.getString("lastName"));
+                guest.setPhone(rs.getInt("phone"));
+                guest.setPassportNumber(rs.getInt("passportNumber"));
+                return guest;
+            }else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
