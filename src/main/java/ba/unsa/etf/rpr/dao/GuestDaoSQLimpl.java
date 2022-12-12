@@ -32,10 +32,10 @@ public class GuestDaoSQLimpl implements GuestDao{
             if(rs.next()){
                 Guests guest = new Guests();
                 guest.setId(rs.getInt("id"));
-                guest.setFirstName(rs.getString("firstName"));
-                guest.setLastName(rs.getString("lastName"));
-                guest.setPhone(rs.getInt("phone"));
-                guest.setPassportNumber(rs.getInt("passportNumber"));
+                guest.setFirstName(rs.getString("First_name"));
+                guest.setLastName(rs.getString("Last_Name"));
+                guest.setPhone(rs.getInt("Phone"));
+                guest.setPassportNumber(rs.getInt("Passport_number"));
                 rs.close();
                 return guest;
             }else {
