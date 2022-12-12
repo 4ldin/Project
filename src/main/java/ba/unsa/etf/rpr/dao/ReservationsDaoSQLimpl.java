@@ -58,6 +58,26 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
      */
     @Override
     public Reservations getById(int id) {
+        String query = "SELECT * FROM reservations WHERE Reservation_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Reservations reservation = new Reservations();
+                reservation.setId(rs.getInt("Reservation_id"));
+                reservation.setReservationDate(rs.getDate("Reservation_date"));
+                reservation.setArrivalDate(rs.getDate("Arrival_date"));
+                reservation.setCheckOutDate(rs.getDate("Check_out_date"));
+                reservation.setGuest(getGuestById(id));
+                rs.close();
+                return reservation;
+            }else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
