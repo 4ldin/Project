@@ -23,7 +23,7 @@ public class GuestDaoSQLimpl implements GuestDao{
 
     @Override
     public Guests getById(int id) {
-        String query = "SELECT * FROM Guests WHERE id = ?";
+        String query = "SELECT * FROM Guests WHERE Guest_id = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
