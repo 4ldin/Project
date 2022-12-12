@@ -127,6 +127,7 @@ public class GuestDaoSQLimpl implements GuestDao{
                 guests.add(guest);
             }
             rs.close();
+            return guests;
         } catch (SQLException e) {
             e.printStackTrace();
         }
