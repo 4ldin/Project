@@ -40,12 +40,27 @@ public class GuestDaoSQLimpl implements GuestDao{
                 return null;
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return null;
     }
 
+    /**
+     * Insert item in database
+     * @param item item to save in database
+     */
     @Override
     public Guests add(Guests item) {
+        String insert = "INSERT INTO Guests (First_name, Last_name, Phone, Passport_number) VALUES(?, ?, ?, ?)";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(insert);
+            stmt.setString(1, item.getFirstName());
+            stmt.setString(2, item.getLastName());
+            stmt.setInt(3, item.getPhone());
+            stmt.setInt(4, item.getPassportNumber());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
