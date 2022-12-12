@@ -60,7 +60,7 @@ public class GuestDaoSQLimpl implements GuestDao{
             stmt.setString(2, item.getLastName());
             stmt.setInt(3, item.getPhone());
             stmt.setInt(4, item.getPassportNumber());
-            stmt.executeUpdate();
+            stmt.executeUpdate(insert);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -83,7 +83,7 @@ public class GuestDaoSQLimpl implements GuestDao{
             stmt.setInt(3, item.getPhone());
             stmt.setInt(4, item.getPassportNumber());
             stmt.setInt(5, id);
-            stmt.executeUpdate();
+            stmt.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -100,7 +100,7 @@ public class GuestDaoSQLimpl implements GuestDao{
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
-            stmt.executeUpdate();
+            stmt.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -97,15 +97,34 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
             stmt.setDate(3, (Date) item.getCheckOutDate());
             stmt.setInt(4, item.getNumPersons());
             stmt.setInt(5, item.getGuest().getId());
-            stmt.executeUpdate();
+            stmt.executeUpdate(insert);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    /**
+     * Method that updates a reservation
+     * @param item - item to be updated
+     * @param id - id of reservation to be updated
+     * @return updated reservation
+     */
     @Override
     public Reservations update(Reservations item, int id) {
+        String query = "UPDATE Reservations SET Reservation_date = ?, Arrival_date = ?, Check_out_date = ?, Num_persons = ?, Guest_id = ? WHERE Reservation_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setDate(1, (Date) item.getReservationDate());
+            stmt.setDate(2, (Date) item.getArrivalDate());
+            stmt.setDate(3, (Date) item.getCheckOutDate());
+            stmt.setInt(4, item.getNumPersons());
+            stmt.setInt(5, item.getGuest().getId());
+            stmt.setInt(6, id);
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
