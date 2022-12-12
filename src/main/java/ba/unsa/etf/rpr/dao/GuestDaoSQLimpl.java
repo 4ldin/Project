@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Guests;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GuestDaoSQLimpl implements GuestDao{
@@ -95,7 +96,7 @@ public class GuestDaoSQLimpl implements GuestDao{
      */
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM guests WHERE Guest_id = ?";
+        String query = "DELETE FROM Guests WHERE Guest_id = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
@@ -105,8 +106,30 @@ public class GuestDaoSQLimpl implements GuestDao{
         }
     }
 
+    /**
+     * Lists all guests from database
+     * @return List of all guests from database
+     */
     @Override
     public List<Guests> getAll() {
-        return null;
+        String query = "SELECT * FROM Guests WHERE Guest_id = ?";
+        List<Guests> guests = new ArrayList<>();
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Guests guest = new Guests();
+                guest.setId(rs.getInt("Guest_id"));
+                guest.setFirstName(rs.getString("First_name"));
+                guest.setLastName(rs.getString("Last_name"));
+                guest.setPhone(rs.getInt("Phone"));
+                guest.setPassportNumber(rs.getInt("Passport_number"));
+                guests.add(guest);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return guests;
     }
 }
