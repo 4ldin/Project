@@ -89,9 +89,20 @@ public class GuestDaoSQLimpl implements GuestDao{
         return null;
     }
 
+    /**
+     * Deletes that deletes guest with matching id
+     * @param id - id of guest to be deleted
+     */
     @Override
     public void delete(int id) {
-
+        String query = "DELETE FROM guests WHERE Guest_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
