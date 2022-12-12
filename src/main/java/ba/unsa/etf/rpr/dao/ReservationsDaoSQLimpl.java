@@ -82,15 +82,21 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
         return null;
     }
 
+    /**
+     * Method that adds given reservation in database
+     * @param item item to save in database
+     * @return
+     */
     @Override
     public Reservations add(Reservations item) {
-        String insert = "INSERT INTO Reservations (Reservation_date, Arrival_date, Check_out_date, Num_persons) VALUES(?, ?, ?, ?)";
+        String insert = "INSERT INTO Reservations (Reservation_date, Arrival_date, Check_out_date, Num_persons, Guest_id) VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(insert);
             stmt.setDate(1, (Date) item.getReservationDate());
             stmt.setDate(2, (Date) item.getArrivalDate());
             stmt.setDate(3, (Date) item.getCheckOutDate());
             stmt.setInt(4, item.getNumPersons());
+            stmt.setInt(5, item.getGuest().getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
