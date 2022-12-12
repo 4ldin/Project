@@ -16,7 +16,7 @@ public class RoomTypeDaoimpl implements RoomTypeDao{
     }
 
     @Override
-    public RoomTypes update(RoomTypes item) {
+    public RoomTypes update(RoomTypes item, int id) {
         return null;
     }
 

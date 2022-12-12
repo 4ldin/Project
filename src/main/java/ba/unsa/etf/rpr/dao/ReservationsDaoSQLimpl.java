@@ -16,7 +16,7 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
     }
 
     @Override
-    public Reservations update(Reservations item) {
+    public Reservations update(Reservations item, int id) {
         return null;
     }
 

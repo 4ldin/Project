@@ -17,7 +17,7 @@ public class RoomDaoSQLimpl implements RoomDao{
     }
 
     @Override
-    public Rooms update(Rooms item) {
+    public Rooms update(Rooms item, int id) {
         return null;
     }
 

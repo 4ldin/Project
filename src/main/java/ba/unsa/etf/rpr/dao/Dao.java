@@ -28,7 +28,7 @@ public interface Dao<T> {
      * @param item - item to be updated
      * @return updated version of given item
      */
-    T update(T item);
+    T update(T item, int id);
 
     /**
      * Delete item from database with given id
