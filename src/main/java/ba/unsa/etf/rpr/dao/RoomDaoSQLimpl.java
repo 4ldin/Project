@@ -77,6 +77,33 @@ public class RoomDaoSQLimpl implements RoomDao{
         return null;
     }
 
+    /**
+     * Method that returns room type for given id of a room
+     * @param id of room
+     * @return Room type with given id
+     */
+    public RoomTypes getRoomTypeById(int id){
+        String query = "SELECT * FROM Room_Types WHERE id = (SELECT r.Room_type_id FROM Rooms r WHERE r.Room_id = ?)";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                RoomTypes roomType = new RoomTypes();
+                roomType.setId(rs.getInt("Room_type_id"));
+                roomType.setRoomType(rs.getString("Room_type"));
+                roomType.setPrice(rs.getInt("Room_price"));
+                rs.close();
+                return roomType;
+            }else{
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public Rooms getById(int id) {
         return null;
