@@ -1,10 +1,11 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Guests;
+import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.RoomTypes;
 import ba.unsa.etf.rpr.domain.Rooms;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.List;
 
 public class RoomDaoSQLimpl implements RoomDao{
@@ -21,6 +22,59 @@ public class RoomDaoSQLimpl implements RoomDao{
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+    public Guests getGuestById(int id){
+        String query = "SELECT * FROM Guests WHERE id = (SELECT r.Guest_id FROM Reservations r WHERE r.Reservation_id = ?)";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Guests guest = new Guests();
+                guest.setId(rs.getInt("id"));
+                guest.setFirstName(rs.getString("First_name"));
+                guest.setLastName(rs.getString("Last_Name"));
+                guest.setPhone(rs.getInt("Phone"));
+                guest.setPassportNumber(rs.getInt("Passport_number"));
+                rs.close();
+                return guest;
+            }else{
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Method that returns reservation for given id of a room
+     * @param id of room
+     * @return Reservation with given id
+     */
+    public Reservations getReservationById(int id){
+        String query = "SELECT * FROM Reservations WHERE id = (SELECT r.Reservations_id FROM Rooms r WHERE r.Room_id = ?)";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Reservations reservation = new Reservations();
+                reservation.setId(rs.getInt("Reservation_id"));
+                reservation.setReservationDate(rs.getDate("Reservation_date"));
+                reservation.setArrivalDate(rs.getDate("Arrival_date"));
+                reservation.setCheckOutDate(rs.getDate("Check_out_date"));
+                reservation.setNumPersons(rs.getInt("Num_persons"));
+                reservation.setGuest(getGuestById(id));
+                rs.close();
+                return reservation;
+            }else{
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
