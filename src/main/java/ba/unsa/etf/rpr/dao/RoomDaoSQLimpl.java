@@ -153,8 +153,25 @@ public class RoomDaoSQLimpl implements RoomDao{
         return null;
     }
 
+    /**
+     * Method that updates a room
+     * @param item - item to be updated
+     * @param id - id of room to be updated
+     * @return updated room
+     */
     @Override
     public Rooms update(Rooms item, int id) {
+        String query = "UPDATE Rooms SET Occupancy = ?, Reservations_id = ?, Room_type_id = ? WHERE Room_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setBoolean(1, item.getOccupancy());
+            stmt.setInt(2, item.getReservation().getId());
+            stmt.setInt(3, item.getRoomType().getId());
+            stmt.setInt(6, id);
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
