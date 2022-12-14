@@ -145,6 +145,10 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
         }
     }
 
+    /**
+     * Lists all reservations from database
+     * @return List of all reservations from database
+     */
     @Override
     public List<Reservations> getAll() {
         String query = "SELECT * FROM Reservations WHERE Reservation_id = ?";
