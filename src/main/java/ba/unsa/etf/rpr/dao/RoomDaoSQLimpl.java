@@ -175,9 +175,20 @@ public class RoomDaoSQLimpl implements RoomDao{
         return null;
     }
 
+    /**
+     * Method that deletes room with matching id
+     * @param id - primary key of entity
+     */
     @Override
     public void delete(int id) {
-
+        String query = "DELETE FROM Rooms WHERE Room_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
