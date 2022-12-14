@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.RoomTypes;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RoomTypeDaoimpl implements RoomTypeDao{
@@ -108,6 +109,23 @@ public class RoomTypeDaoimpl implements RoomTypeDao{
 
     @Override
     public List<RoomTypes> getAll() {
-        return null;
+        String query = "SELECT * FROM Room_Types WHERE Room_Type_id = ?";
+        List<RoomTypes> roomTypes = new ArrayList<>();
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                RoomTypes roomType = new RoomTypes();
+                roomType.setId(rs.getInt("Room_type_id"));
+                roomType.setRoomType(rs.getString("Room_type"));
+                roomType.setPrice(rs.getDouble("Room_price"));
+                roomTypes.add(roomType);
+            }
+            rs.close();
+            return roomTypes;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return roomTypes;
     }
 }
