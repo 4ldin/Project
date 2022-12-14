@@ -29,7 +29,7 @@ public class RoomTypeDaoimpl implements RoomTypeDao{
      */
     @Override
     public RoomTypes getById(int id) {
-        String query = "SELECT * FROM Room_Types WHERE RRoom_type_id = ?";
+        String query = "SELECT * FROM Room_Types WHERE Room_type_id = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
@@ -50,8 +50,22 @@ public class RoomTypeDaoimpl implements RoomTypeDao{
         return null;
     }
 
+    /**
+     * Method that adds given room type in database
+     * @param item item to save in database
+     * @return
+     */
     @Override
     public RoomTypes add(RoomTypes item) {
+        String insert = "INSERT INTO Room_Types (Room_type, Room_price) VALUES(?, ?)";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(insert);
+            stmt.setString(1, item.getRoomType());
+            stmt.setDouble(2, item.getPrice());
+            stmt.executeUpdate(insert);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
