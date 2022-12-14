@@ -69,8 +69,24 @@ public class RoomTypeDaoimpl implements RoomTypeDao{
         return null;
     }
 
+    /**
+     * Method that updates a room type
+     * @param item - item to be updated
+     * @param id - id of room type to be updated
+     * @return updated room type
+     */
     @Override
     public RoomTypes update(RoomTypes item, int id) {
+        String query = "UPDATE Room_Types SET Room_type = ?, Room_price = ? WHERE Room_type_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setString(1, item.getRoomType());
+            stmt.setDouble(2, item.getPrice());
+            stmt.setInt(3, id);
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

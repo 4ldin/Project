@@ -168,7 +168,7 @@ public class RoomDaoSQLimpl implements RoomDao{
             stmt.setBoolean(1, item.getOccupancy());
             stmt.setInt(2, item.getReservation().getId());
             stmt.setInt(3, item.getRoomType().getId());
-            stmt.setInt(6, id);
+            stmt.setInt(4, id);
             stmt.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
