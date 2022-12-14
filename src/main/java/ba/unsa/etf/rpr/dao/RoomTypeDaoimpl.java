@@ -90,9 +90,20 @@ public class RoomTypeDaoimpl implements RoomTypeDao{
         return null;
     }
 
+    /**
+     * Method that deletes room type with matching id
+     * @param id - primary key of entity
+     */
     @Override
     public void delete(int id) {
-
+        String query = "DELETE FROM Room_Types WHERE Room_type_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
