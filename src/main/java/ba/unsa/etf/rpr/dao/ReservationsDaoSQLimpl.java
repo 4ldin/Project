@@ -53,13 +53,13 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
     }
 
     /**
-     * Method that finds Reservation with mathcing id
+     * Method that finds Reservation with matching id
      * @param id primary key of entity
      * @return Reservation with given id
      */
     @Override
     public Reservations getById(int id) {
-        String query = "SELECT * FROM reservations WHERE Reservation_id = ?";
+        String query = "SELECT * FROM Reservations WHERE Reservation_id = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);

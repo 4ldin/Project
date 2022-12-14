@@ -104,8 +104,32 @@ public class RoomDaoSQLimpl implements RoomDao{
         return null;
     }
 
+    /**
+     * Method that finds Room with matching id
+     * @param id primary key of entity
+     * @return Room with given id
+     */
     @Override
     public Rooms getById(int id) {
+        String query = "SELECT * FROM Rooms WHERE Room_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Rooms room = new Rooms();
+                room.setId(rs.getInt("Room_id"));
+                room.setOccupancy(rs.getBoolean("Occupancy"));
+                room.setReservation(getReservationById(id));
+                room.setRoomType(getRoomTypeById(id));
+                rs.close();
+                return room;
+            }else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
