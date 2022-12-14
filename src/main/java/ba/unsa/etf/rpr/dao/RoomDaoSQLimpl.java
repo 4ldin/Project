@@ -133,8 +133,23 @@ public class RoomDaoSQLimpl implements RoomDao{
         return null;
     }
 
+    /**
+     * Method that adds given room in database
+     * @param item item to save in database
+     * @return
+     */
     @Override
     public Rooms add(Rooms item) {
+        String insert = "INSERT INTO Rooms (Occupancy, Reservations_id, Room_type_id) VALUES(?, ?, ?)";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(insert);
+            stmt.setBoolean(1, item.getOccupancy());
+            stmt.setInt(2, item.getReservation().getId());
+            stmt.setInt(3, item.getRoomType().getId());
+            stmt.executeUpdate(insert);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
