@@ -1,9 +1,9 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.RoomTypes;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.List;
 
 public class RoomTypeDaoimpl implements RoomTypeDao{
@@ -21,8 +21,32 @@ public class RoomTypeDaoimpl implements RoomTypeDao{
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method that finds Room_type with matching id
+     * @param id primary key of entity
+     * @return Room_type with given id
+     */
     @Override
     public RoomTypes getById(int id) {
+        String query = "SELECT * FROM Room_Types WHERE RRoom_type_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                RoomTypes roomType = new RoomTypes();
+                roomType.setId(rs.getInt("Room_type_id"));
+                roomType.setRoomType(rs.getString("Room_type"));
+                roomType.setPrice(rs.getDouble("Room_price"));
+                rs.close();
+                return roomType;
+            }else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
