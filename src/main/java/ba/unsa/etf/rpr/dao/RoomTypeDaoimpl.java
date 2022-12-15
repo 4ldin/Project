@@ -130,7 +130,7 @@ public class RoomTypeDaoimpl implements RoomTypeDao{
 
     @Override
     public List<RoomTypes> getAll() {
-        String query = "SELECT * FROM Room_Types WHERE Room_Type_id = ?";
+        String query = "SELECT * FROM Room_Types ";
         List<RoomTypes> roomTypes = new ArrayList<>();
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
