@@ -134,7 +134,7 @@ public class GuestDaoSQLimpl implements GuestDao{
      */
     @Override
     public List<Guests> getAll() {
-        String query = "SELECT * FROM Guests HERE Guest_id = ?W";
+        String query = "SELECT * FROM Guests";
         List<Guests> guests = new ArrayList<>();
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
