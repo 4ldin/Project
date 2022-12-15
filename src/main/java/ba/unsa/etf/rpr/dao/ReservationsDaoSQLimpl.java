@@ -172,7 +172,7 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
      */
     @Override
     public List<Reservations> getAll() {
-        String query = "SELECT * FROM Reservations WHERE Reservation_id = ?";
+        String query = "SELECT * FROM Reservations";
         List<Reservations> reservations = new ArrayList<>();
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
