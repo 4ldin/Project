@@ -219,7 +219,7 @@ public class RoomDaoSQLimpl implements RoomDao{
      */
     @Override
     public List<Rooms> getAll() {
-        String query = "SELECT * FROM Rooms WHERE Room_id = ?";
+        String query = "SELECT * FROM Rooms";
         List<Rooms> rooms = new ArrayList<>();
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
