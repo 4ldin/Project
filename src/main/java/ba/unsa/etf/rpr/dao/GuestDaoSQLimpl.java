@@ -2,6 +2,9 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Guests;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +14,31 @@ public class GuestDaoSQLimpl implements GuestDao{
     private Connection connection;
 
     /**
-     * Constructor for GuestDao that connects to the database
-     * @param connection
+     * Constructor for GuestDao that connects to the database with hidden database name and password
      */
-    public GuestDaoSQLimpl(Connection connection) {
+    public GuestDaoSQLimpl() {
+        String username = "";
+        try {
+            FileInputStream file = new FileInputStream("username.txt");
+            int myData;
+            while((myData = file.read()) != -1){
+                username = username + (char)myData;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        String password = "";
+        try {
+            FileInputStream file = new FileInputStream("password.txt");
+            int myData;
+            while((myData = file.read()) != -1){
+                password = password + (char)myData;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try{
-            this.connection = DriverManager.getConnection("jdbc://sql7.freemysqlhosting.net:3306/user", "user", "password");
+            this.connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/" + username, username, password);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -112,7 +134,7 @@ public class GuestDaoSQLimpl implements GuestDao{
      */
     @Override
     public List<Guests> getAll() {
-        String query = "SELECT * FROM Guests WHERE Guest_id = ?";
+        String query = "SELECT * FROM Guests HERE Guest_id = ?W";
         List<Guests> guests = new ArrayList<>();
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
