@@ -3,6 +3,8 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.RoomTypes;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +15,30 @@ public class RoomTypeDaoimpl implements RoomTypeDao{
 
     /**
      * Constructor for RoomTypeDaoimpl that connects to the database
-     * @param connection
      */
-    public RoomTypeDaoimpl(Connection connection) {
+    public RoomTypeDaoimpl() {
+        String username = "";
+        try {
+            FileInputStream file = new FileInputStream("username.txt");
+            int myData;
+            while((myData = file.read()) != -1){
+                username = username + (char)myData;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        String password = "";
+        try {
+            FileInputStream file = new FileInputStream("password.txt");
+            int myData;
+            while((myData = file.read()) != -1){
+                password = password + (char)myData;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try{
-            this.connection = DriverManager.getConnection("jdbc://sql7.freemysqlhosting.net:3306/user", "user", "password");
+            this.connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/" + username, username, password);
         }catch(Exception e){
             e.printStackTrace();
         }
