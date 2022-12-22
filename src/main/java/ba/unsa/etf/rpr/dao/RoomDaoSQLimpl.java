@@ -40,7 +40,7 @@ public class RoomDaoSQLimpl implements RoomDao{
             throw new RuntimeException(e);
         }
         try{
-            this.connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/" + username, username, password);
+            this.connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/" + username, username, password);
         }catch(Exception e){
             e.printStackTrace();
         }
