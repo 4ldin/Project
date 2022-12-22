@@ -23,7 +23,9 @@ public class Guests {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phone=" + phone +
-                ", pasportNumber=" + passportNumber +
+                ", passportNumber=" + passportNumber +
+                ", eMail='" + eMail + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 
@@ -87,5 +89,7 @@ public class Guests {
     public String getPassword(){return password;};
 
     public void setPassword(String password){this.password = password;};
+
+
 
 }

@@ -1,0 +1,15 @@
+#loginButton {
+-fx-background-color: lightgreen;
+}
+
+#registerButton {
+-fx-background-color: lightskyblue;
+}
+
+.wrongField {
+-fx-background-color: lightpink;
+}
+
+.correctField {
+-fx-background-color: lightgreen;
+}
