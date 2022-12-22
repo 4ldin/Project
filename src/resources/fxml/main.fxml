@@ -23,7 +23,7 @@
     </rowConstraints>
    <children>
       <Label prefHeight="17.0" prefWidth="136.0" text="E-mail:" GridPane.rowIndex="2" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="fieldUsername" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label text="Password:" GridPane.rowIndex="3" />
       <PasswordField prefHeight="25.0" prefWidth="95.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Button fx:id="loginButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loginClick" prefHeight="25.0" prefWidth="204.0" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="4" />
