@@ -82,7 +82,11 @@ public class MainController {
             Guests guest = guestdao.getByEmailPassword(fieldUsername.getText(), fieldPassword.getText());
             if(!Objects.equals(guest.geteMail(), fieldUsername.getText()) || !Objects.equals(guest.getPassword(), fieldPassword.getText())){
                 System.out.println("Incorrect email or password. Please try again.");
+                wrongPassword();
+                wrongUsername();
             }else{
+                correctPassword();
+                correctUsername();
                 System.out.println("Login successful!");
                 Stage stage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("/fxml/Guest.fxml"));
