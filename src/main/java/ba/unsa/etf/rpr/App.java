@@ -19,6 +19,6 @@ public class App
         Guests guest = new Guests();
         GuestDao dao = new GuestDaoSQLimpl();
         List<Guests> guests = dao.getAll();
-        System.out.println(guests);
+        System.out.println(dao.getByEmailPassword("aislamagic1@gmail.com", "123").geteMail());
     }
 }

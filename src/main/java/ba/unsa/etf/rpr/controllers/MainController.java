@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -23,13 +24,22 @@ public class MainController {
     public TextField fieldUsername;
     public PasswordField fieldPassword;
 
-    private void wrongField(){
+    private void wrongUsername(){
         fieldUsername.getStyleClass().removeAll("correctField");
         fieldUsername.getStyleClass().add("wrongField");
     }
-    private void correctField(){
+    private void correctUsername(){
         fieldUsername.getStyleClass().removeAll("wrongField");
         fieldUsername.getStyleClass().add("correctField");
+    }
+
+    private void wrongPassword(){
+        fieldPassword.getStyleClass().removeAll("correctField");
+        fieldPassword.getStyleClass().add("wrongField");
+    }
+    private void correctPassword(){
+        fieldPassword.getStyleClass().removeAll("wrongField");
+        fieldPassword.getStyleClass().add("correctField");
     }
     @FXML
     public void initialize(){
@@ -37,9 +47,9 @@ public class MainController {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
                 if (fieldUsername.getText().trim().isEmpty()) {
-                    wrongField();
+                    wrongUsername();
                 }else{
-                    correctField();
+                    correctUsername();
                 }
             }
         }
@@ -48,11 +58,9 @@ public class MainController {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
                 if (fieldPassword.getText().trim().isEmpty()) {
-                    fieldPassword.getStyleClass().removeAll("correctField");
-                    fieldPassword.getStyleClass().add("wrongField");
+                    wrongPassword();
                 } else {
-                    fieldPassword.getStyleClass().removeAll("wrongField");
-                    fieldPassword.getStyleClass().add("correctField");
+                    correctPassword();
                 }
 
             }
@@ -71,9 +79,9 @@ public class MainController {
             return;
         }else{
             GuestDao guestdao = new GuestDaoSQLimpl();
-            Guests guest = guestdao.getByEmailPassword(fieldUsername.toString(), fieldPassword.toString());
-            if(guest == null){
-
+            Guests guest = guestdao.getByEmailPassword(fieldUsername.getText(), fieldPassword.getText());
+            if(!Objects.equals(guest.geteMail(), fieldUsername.getText()) || !Objects.equals(guest.getPassword(), fieldPassword.getText())){
+                System.out.println("Incorrect email or password. Please try again.");
             }else{
                 System.out.println("Login successful!");
                 Stage stage = new Stage();
