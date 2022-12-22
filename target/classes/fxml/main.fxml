@@ -5,10 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="354.0" vgap="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<?import java.net.URL?>
+<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="354.0" vgap="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.MainController">
+    <stylesheets>
+        <URL value="@../css/main.css" />
+    </stylesheets>
     <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="167.0" minWidth="10.0" prefWidth="167.0" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="167.0" minWidth="10.0" prefWidth="167.0" />
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="175.0" minWidth="10.0" prefWidth="168.0" />
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="187.0" minWidth="10.0" prefWidth="166.0" />
     </columnConstraints>
     <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -22,7 +26,7 @@
       <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label text="Password:" GridPane.rowIndex="3" />
       <PasswordField prefHeight="25.0" prefWidth="95.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button fx:id="loginButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loginClick" prefHeight="25.0" prefWidth="204.0" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <HBox prefHeight="23.0" prefWidth="344.0" GridPane.columnSpan="2">
          <children>
             <Label prefHeight="46.0" prefWidth="145.0" text="Login">
