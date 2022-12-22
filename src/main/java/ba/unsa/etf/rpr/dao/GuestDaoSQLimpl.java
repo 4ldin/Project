@@ -170,6 +170,8 @@ public class GuestDaoSQLimpl implements GuestDao{
      * @param password password of guest
      * @return guest
      */
+
+    @Override
     public Guests getByEmailPassword(String email, String password){
         String query = "SELECT * FROM Guests WHERE eMail = ? AND password = ?";
         try {
