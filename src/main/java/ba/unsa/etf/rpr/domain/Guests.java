@@ -14,7 +14,7 @@ public class Guests {
     private int phone;
     private int passportNumber;
     private String eMail;
-
+    private String password;
 
     @Override
     public String toString() {
@@ -82,6 +82,10 @@ public class Guests {
 
     public String geteMail(){ return eMail;};
 
-    void seteMail(String eMail){ this.eMail = eMail;};
+    public void seteMail(String eMail){ this.eMail = eMail;};
+
+    public String getPassword(){return password;};
+
+    public void setPassword(String password){this.password = password;};
 
 }
