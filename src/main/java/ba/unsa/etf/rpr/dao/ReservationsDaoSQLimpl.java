@@ -4,10 +4,12 @@ import ba.unsa.etf.rpr.domain.Guests;
 import ba.unsa.etf.rpr.domain.Reservations;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class ReservationsDaoSQLimpl implements ReservationsDao{
 
@@ -16,29 +18,13 @@ public class ReservationsDaoSQLimpl implements ReservationsDao{
     /**
      * Constructor for ReservationsDaoSQLimpl that connects to the database
      */
-    public ReservationsDaoSQLimpl() {
-        String username = "";
-        try {
-            FileInputStream file = new FileInputStream("username.txt");
-            int myData;
-            while((myData = file.read()) != -1){
-                username = username + (char)myData;
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        String password = "";
-        try {
-            FileInputStream file = new FileInputStream("password.txt");
-            int myData;
-            while((myData = file.read()) != -1){
-                password = password + (char)myData;
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public ReservationsDaoSQLimpl() throws IOException {
+        String fieldPath = "src/dataBase.properties";
+        Properties pros = new Properties();
+        FileInputStream ip = new FileInputStream(fieldPath);
+        pros.load(ip);
         try{
-            this.connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/" + username, username, password);
+            this.connection = DriverManager.getConnection(pros.getProperty("url"), pros.getProperty("username"), pros.getProperty("password"));
         }catch(Exception e){
             e.printStackTrace();
         }
