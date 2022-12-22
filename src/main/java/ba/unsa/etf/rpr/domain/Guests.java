@@ -13,6 +13,7 @@ public class Guests {
     private String lastName;
     private int phone;
     private int passportNumber;
+    private String eMail;
 
 
     @Override
@@ -78,5 +79,9 @@ public class Guests {
     public void setPassportNumber(int passportNumber) {
         this.passportNumber = passportNumber;
     }
+
+    public String geteMail(){ return eMail;};
+
+    void seteMail(String eMail){ this.eMail = eMail;};
 
 }
