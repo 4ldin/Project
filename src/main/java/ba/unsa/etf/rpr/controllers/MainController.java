@@ -23,17 +23,23 @@ public class MainController {
     public TextField fieldUsername;
     public PasswordField fieldPassword;
 
+    private void wrongField(){
+        fieldUsername.getStyleClass().removeAll("correctField");
+        fieldUsername.getStyleClass().add("wrongField");
+    }
+    private void correctField(){
+        fieldUsername.getStyleClass().removeAll("wrongField");
+        fieldUsername.getStyleClass().add("correctField");
+    }
     @FXML
     public void initialize(){
         fieldUsername.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
                 if (fieldUsername.getText().trim().isEmpty()) {
-                    fieldUsername.getStyleClass().removeAll("correctField");
-                    fieldUsername.getStyleClass().add("wrongField");
+                    wrongField();
                 }else{
-                    fieldUsername.getStyleClass().removeAll("wrongField");
-                    fieldUsername.getStyleClass().add("correctField");
+                    correctField();
                 }
             }
         }
