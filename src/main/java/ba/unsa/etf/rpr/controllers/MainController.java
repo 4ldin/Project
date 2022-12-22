@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,6 +18,7 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public class MainController {
 
     public TextField fieldUsername;
+    public PasswordField fieldPassword;
 
     @FXML
     public void initialize(){
@@ -26,10 +28,24 @@ public class MainController {
                 if (fieldUsername.getText().trim().isEmpty()) {
                     fieldUsername.getStyleClass().removeAll("correctField");
                     fieldUsername.getStyleClass().add("wrongField");
-                } else {
+                }else{
                     fieldUsername.getStyleClass().removeAll("wrongField");
                     fieldUsername.getStyleClass().add("correctField");
                 }
+            }
+        }
+        );
+        fieldPassword.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
+                if (fieldPassword.getText().trim().isEmpty()) {
+                    fieldPassword.getStyleClass().removeAll("correctField");
+                    fieldPassword.getStyleClass().add("wrongField");
+                } else {
+                    fieldPassword.getStyleClass().removeAll("wrongField");
+                    fieldPassword.getStyleClass().add("correctField");
+                }
+
             }
         }
         );
@@ -41,6 +57,12 @@ public class MainController {
             System.out.println("Empty username!");
             return;
         }
+        if(fieldPassword.getText().isEmpty()){
+            fieldPassword.getStyleClass().add("wrongField");
+            System.out.println("Empty password!");
+            return;
+        }
+
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Guest.fxml"));
         stage.setTitle("Hotel Reservation System");
