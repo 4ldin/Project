@@ -152,6 +152,8 @@ public class GuestDaoSQLimpl implements GuestDao{
                 guest.setLastName(rs.getString("Last_name"));
                 guest.setPhone(rs.getInt("Phone"));
                 guest.setPassportNumber(rs.getInt("Passport_number"));
+                guest.seteMail(rs.getString("eMail"));
+                guest.setPassword(rs.getString("password"));
                 guests.add(guest);
             }
             rs.close();
