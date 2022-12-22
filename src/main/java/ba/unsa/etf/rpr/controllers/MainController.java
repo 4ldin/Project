@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -23,6 +24,7 @@ public class MainController {
 
     public TextField fieldUsername;
     public PasswordField fieldPassword;
+    public Button loginButton;
 
     private void wrongUsername(){
         fieldUsername.getStyleClass().removeAll("correctField");
@@ -62,7 +64,6 @@ public class MainController {
                 } else {
                     correctPassword();
                 }
-
             }
         }
         );
@@ -90,9 +91,12 @@ public class MainController {
                 System.out.println("Login successful!");
                 Stage stage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("/fxml/Guest.fxml"));
-                stage.setTitle("Hotel Reservation System");
+                stage.setTitle("Guest");
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                stage.setResizable(false);
                 stage.show();
+                Stage primaryStage = (Stage) loginButton.getScene().getWindow();
+                primaryStage.hide();
             }
         }
     }
