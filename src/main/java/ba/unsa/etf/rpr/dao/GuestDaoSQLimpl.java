@@ -77,13 +77,15 @@ public class GuestDaoSQLimpl implements GuestDao{
      */
     @Override
     public Guests add(Guests item) {
-        String insert = "INSERT INTO Guests (First_name, Last_name, Phone, Passport_number) VALUES(?, ?, ?, ?)";
+        String insert = "INSERT INTO Guests (First_name, Last_name, Phone, Passport_number, eMail, password) VALUES(?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(insert);
             stmt.setString(1, item.getFirstName());
             stmt.setString(2, item.getLastName());
             stmt.setInt(3, item.getPhone());
             stmt.setInt(4, item.getPassportNumber());
+            stmt.setString(5,item.geteMail());
+            stmt.setString(6,item.getPassword());
             stmt.executeUpdate(insert);
         } catch (SQLException e) {
             e.printStackTrace();
