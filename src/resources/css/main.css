@@ -1,3 +1,7 @@
 #loginButton {
+-fx-background-color: lightgreen;
+}
+
+#registerButton {
 -fx-background-color: lightskyblue;
 }

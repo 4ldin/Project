@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import java.net.URL?>
 <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="354.0" vgap="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.MainController">
     <stylesheets>
         <URL value="@../css/main.css" />
     </stylesheets>
     <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="175.0" minWidth="10.0" prefWidth="168.0" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="187.0" minWidth="10.0" prefWidth="166.0" />
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="175.0" minWidth="10.0" prefWidth="162.0" />
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="187.0" minWidth="10.0" prefWidth="172.0" />
     </columnConstraints>
     <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -41,7 +41,7 @@
             <Label alignment="CENTER" prefHeight="34.0" prefWidth="137.0" text="Please sign in to continue" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Exit" GridPane.rowIndex="4" />
+      <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Register" GridPane.rowIndex="4" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
