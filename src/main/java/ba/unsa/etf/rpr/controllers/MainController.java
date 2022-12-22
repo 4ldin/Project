@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.dao.GuestDao;
+import ba.unsa.etf.rpr.dao.GuestDaoSQLimpl;
+import ba.unsa.etf.rpr.domain.Guests;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -56,17 +59,23 @@ public class MainController {
             fieldUsername.getStyleClass().add("wrongField");
             System.out.println("Empty username!");
             return;
-        }
-        if(fieldPassword.getText().isEmpty()){
+        }else if(fieldPassword.getText().isEmpty()){
             fieldPassword.getStyleClass().add("wrongField");
             System.out.println("Empty password!");
             return;
-        }
+        }else{
+            GuestDao guestdao = new GuestDaoSQLimpl();
+            Guests guest = guestdao.getByEmailPassword(fieldUsername.toString(), fieldPassword.toString());
+            if(guest == null){
 
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Guest.fxml"));
-        stage.setTitle("Hotel Reservation System");
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.show();
+            }else{
+                System.out.println("Login successful!");
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Guest.fxml"));
+                stage.setTitle("Hotel Reservation System");
+                stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                stage.show();
+            }
+        }
     }
 }
