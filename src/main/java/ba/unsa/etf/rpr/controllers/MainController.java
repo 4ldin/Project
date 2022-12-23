@@ -93,6 +93,8 @@ public class MainController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Guest.fxml"));
                 Parent root = loader.load();
 
+                GuestController guestScene = loader.getController();
+                guestScene.displayName(fieldUsername.getText());
 
                 stage.setTitle("Guest");
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

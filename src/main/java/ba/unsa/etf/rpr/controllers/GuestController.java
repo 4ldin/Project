@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
@@ -17,6 +18,11 @@ public class GuestController {
 
 
     public Button logoutButton;
+    public Label userName;
+
+    public void displayName(String name){
+        userName.setText(name);
+    }
 
     public void logoutClick(ActionEvent actionEvent) throws IOException {
         Stage primaryStage = new Stage();
