@@ -90,7 +90,10 @@ public class MainController {
                 correctUsername();
                 System.out.println("Login successful!");
                 Stage stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Guest.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Guest.fxml"));
+                Parent root = loader.load();
+
+
                 stage.setTitle("Guest");
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 stage.setResizable(false);
