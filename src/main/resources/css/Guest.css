@@ -1,0 +1,5 @@
+#profileIcon{
+    -fx-graphic: url("/img/profile.png");
+    -fx-graphic-text-gap : 10;
+    -fx-border-width: 2px;
+}
