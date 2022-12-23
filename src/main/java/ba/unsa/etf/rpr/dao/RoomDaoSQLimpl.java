@@ -42,8 +42,6 @@ public class RoomDaoSQLimpl implements RoomDao{
                 guest.setId(rs.getInt("id"));
                 guest.setFirstName(rs.getString("First_name"));
                 guest.setLastName(rs.getString("Last_Name"));
-                guest.setPhone(rs.getInt("Phone"));
-                guest.setPassportNumber(rs.getInt("Passport_number"));
                 rs.close();
                 return guest;
             }else{
