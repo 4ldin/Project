@@ -11,8 +11,6 @@ public class Guests {
     private int id;
     private String firstName;
     private String lastName;
-    private int phone;
-    private int passportNumber;
     private String eMail;
     private String password;
 
@@ -22,8 +20,6 @@ public class Guests {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", phone=" + phone +
-                ", passportNumber=" + passportNumber +
                 ", eMail='" + eMail + '\'' +
                 ", password='" + password + '\'' +
                 '}';
@@ -66,22 +62,6 @@ public class Guests {
         this.lastName = lastName;
     }
 
-    public int getPhone(){
-        return phone;
-    }
-
-    public void setPhone(int phone){
-        this.phone = phone;
-    }
-
-    public int getPassportNumber(){
-        return passportNumber;
-    }
-
-    public void setPassportNumber(int passportNumber) {
-        this.passportNumber = passportNumber;
-    }
-
     public String geteMail(){ return eMail;};
 
     public void seteMail(String eMail){ this.eMail = eMail;};
@@ -89,7 +69,6 @@ public class Guests {
     public String getPassword(){return password;};
 
     public void setPassword(String password){this.password = password;};
-
 
 
 }
