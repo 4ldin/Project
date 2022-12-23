@@ -41,10 +41,8 @@ public class GuestDaoSQLimpl implements GuestDao{
                 guest.setId(rs.getInt("id"));
                 guest.setFirstName(rs.getString("First_name"));
                 guest.setLastName(rs.getString("Last_Name"));
-                guest.setPhone(rs.getInt("Phone"));
                 guest.seteMail(rs.getString("eMail"));
                 guest.setPassword(rs.getString("password"));
-                guest.setPassportNumber(rs.getInt("Passport_number"));
                 rs.close();
                 return guest;
             }else {
@@ -62,15 +60,13 @@ public class GuestDaoSQLimpl implements GuestDao{
      */
     @Override
     public Guests add(Guests item) {
-        String insert = "INSERT INTO Guests (First_name, Last_name, Phone, Passport_number, eMail, password) VALUES(?, ?, ?, ?, ?, ?)";
+        String insert = "INSERT INTO Guests (First_name, Last_name, eMail, password) VALUES(?, ?, ?, ?)";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(insert);
             stmt.setString(1, item.getFirstName());
             stmt.setString(2, item.getLastName());
-            stmt.setInt(3, item.getPhone());
-            stmt.setInt(4, item.getPassportNumber());
-            stmt.setString(5,item.geteMail());
-            stmt.setString(6,item.getPassword());
+            stmt.setString(3,item.geteMail());
+            stmt.setString(4,item.getPassword());
             stmt.executeUpdate(insert);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,16 +82,14 @@ public class GuestDaoSQLimpl implements GuestDao{
      */
     @Override
     public Guests update(Guests item, int id) {
-        String query = "UPDATE Guests SET First_name = ?, Last_name = ?, Phone = ?, Passport_number = ?, eMail = ?, password = ? WHERE Guest_id = ?";
+        String query = "UPDATE Guests SET First_name = ?, Last_name = ?, eMail = ?, password = ? WHERE Guest_id = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setString(1, item.getFirstName());
             stmt.setString(2, item.getLastName());
-            stmt.setInt(3, item.getPhone());
-            stmt.setInt(4, item.getPassportNumber());
-            stmt.setString(5, item.geteMail());
-            stmt.setString(6, item.getPassword());
-            stmt.setInt(7, id);
+            stmt.setString(3, item.geteMail());
+            stmt.setString(4, item.getPassword());
+            stmt.setInt(5, id);
             stmt.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -135,8 +129,6 @@ public class GuestDaoSQLimpl implements GuestDao{
                 guest.setId(rs.getInt("Guest_id"));
                 guest.setFirstName(rs.getString("First_name"));
                 guest.setLastName(rs.getString("Last_name"));
-                guest.setPhone(rs.getInt("Phone"));
-                guest.setPassportNumber(rs.getInt("Passport_number"));
                 guest.seteMail(rs.getString("eMail"));
                 guest.setPassword(rs.getString("password"));
                 guests.add(guest);
@@ -169,8 +161,6 @@ public class GuestDaoSQLimpl implements GuestDao{
                 guest.setId(rs.getInt("Guest_id"));
                 guest.setFirstName(rs.getString("First_name"));
                 guest.setLastName(rs.getString("Last_name"));
-                guest.setPhone(rs.getInt("Phone"));
-                guest.setPassportNumber(rs.getInt("Passport_number"));
                 guest.seteMail(rs.getString("eMail"));
                 guest.setPassword(rs.getString("password"));
             }
