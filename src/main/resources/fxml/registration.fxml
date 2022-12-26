@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="600.0" vgap="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.RegistrationController">
+    <stylesheets>
+        <URL value="@../css/registration.css" />
+    </stylesheets>
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="288.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="476.0" minWidth="10.0" prefWidth="287.0" />
@@ -43,12 +47,12 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
             <children>
-                <Label fx:id="lastName" text="Last name:">
+                <Label text="Last name:">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <TextField />
+                <TextField fx:id="lastName" />
             </children>
         </HBox>
         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
