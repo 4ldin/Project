@@ -27,6 +27,7 @@ public class RegistrationController {
     public Label passwordError;
     public Label eMailError;
     public Button returnButton;
+    public Button createAccountBtn;
     private List<Guests> listOfGuests;
 
     @FXML
@@ -84,5 +85,8 @@ public class RegistrationController {
         Stage guestStage = (Stage) returnButton.getScene().getWindow();
         guestStage.close();
         System.out.println("Returning to login screen.");
+    }
+
+    public void createAccountBtnClick(ActionEvent actionEvent) {
     }
 }
