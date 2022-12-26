@@ -3,7 +3,9 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.dao.GuestDao;
 import ba.unsa.etf.rpr.dao.GuestDaoSQLimpl;
 import ba.unsa.etf.rpr.domain.Guests;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -18,6 +20,7 @@ public class RegistrationController {
     public TextField lastName;
     public Label passwordError;
     public Label eMailError;
+    public Button returnButton;
     private List<Guests> listOfGuests;
 
     @FXML
@@ -63,4 +66,6 @@ public class RegistrationController {
     }
 
 
+    public void returnClick(ActionEvent actionEvent) {
+    }
 }
