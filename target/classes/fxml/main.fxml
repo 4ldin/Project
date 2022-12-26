@@ -41,7 +41,7 @@
             <Label alignment="CENTER" prefHeight="34.0" prefWidth="137.0" text="Please sign in to continue" />
          </children>
       </HBox>
-      <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Register" GridPane.rowIndex="4" />
+      <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerClick" prefHeight="25.0" prefWidth="171.0" text="Register" GridPane.rowIndex="4" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
