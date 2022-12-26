@@ -41,7 +41,13 @@ public class RegistrationController {
             }
         });
         eMail.textProperty().addListener((observableValue, oldVal, newVal) -> {
-
+            if(eMail.getText().trim().isEmpty()){
+                eMail.getStyleClass().removeAll("correctField");
+                eMail.getStyleClass().add("wrongField");
+            }else{
+                eMail.getStyleClass().removeAll("wrongField");
+                eMail.getStyleClass().add("correctField");
+            }
         });
         password.textProperty().addListener((observableValue, oldVal, newVal) -> {
             if(newVal.trim().length() < 5){
