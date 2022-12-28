@@ -72,6 +72,24 @@ public class RegistrationController {
         });
     }
 
+    public void createAccountBtnClick(ActionEvent actionEvent) {
+        if(firstName.getText().isEmpty()){
+            firstName.getStyleClass().add("wrongField");
+            System.out.println("Enter first name!");
+            return;
+        }else if(lastName.getText().isEmpty()){
+           lastName.getStyleClass().add("wrongField");
+            System.out.println("Enter last name!");
+            return;
+        }else if(eMail.getText().isEmpty()){
+            eMail.getStyleClass().add("wrongField");
+            System.out.println("Enter email!");
+            return;
+        }else if(password.getText().length() < 5){
+            password.getStyleClass().add("wrongField");
+            System.out.println("Password must contain at least 5 characters!");
+        }
+    }
 
     public void returnClick(ActionEvent actionEvent) throws IOException {
         Stage primaryStage = new Stage();
@@ -87,6 +105,4 @@ public class RegistrationController {
         System.out.println("Returning to login screen.");
     }
 
-    public void createAccountBtnClick(ActionEvent actionEvent) {
-    }
 }
