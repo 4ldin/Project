@@ -88,6 +88,25 @@ public class RegistrationController {
         }else if(password.getText().length() < 5){
             password.getStyleClass().add("wrongField");
             System.out.println("Password must contain at least 5 characters!");
+        }else{
+            Guests guest = new Guests();
+            eMailError.setText("");
+            try {
+                GuestDao dao = new GuestDaoSQLimpl();
+                listOfGuests = dao.getAll();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            for(Guests x : listOfGuests){
+                if(x.geteMail().equals(eMail.getText())){
+                    eMail.getStyleClass().removeAll("correctField");
+                    eMail.getStyleClass().add("wrongField");
+                    eMailError.setText("Email already in use!");
+                    System.out.println("Email already in use. Please try again.");
+                    return;
+                }
+            }
+            System.out.println("Successful registration!");
         }
     }
 
