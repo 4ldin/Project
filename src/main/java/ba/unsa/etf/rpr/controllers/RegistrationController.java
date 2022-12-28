@@ -109,6 +109,7 @@ public class RegistrationController {
                 guest.setPassword(password.getText());
 
                 System.out.println("Your account has been registered!");
+                returnClick();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -116,7 +117,7 @@ public class RegistrationController {
         }
     }
 
-    public void returnClick(ActionEvent actionEvent) throws IOException {
+    public void returnClick() throws IOException {
         Stage primaryStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         Parent root =  fxmlLoader.load();
