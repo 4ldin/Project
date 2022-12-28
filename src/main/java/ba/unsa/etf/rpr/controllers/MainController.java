@@ -94,7 +94,7 @@ public class MainController {
                 Parent root = loader.load();
 
                 GuestController guestScene = loader.getController();
-                guestScene.displayName(fieldUsername.getText());
+                guestScene.displayName(guest.getFirstName() + " " + guest.getLastName());
 
                 stage.setTitle("Guest");
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
