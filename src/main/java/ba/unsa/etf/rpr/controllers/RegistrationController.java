@@ -94,19 +94,25 @@ public class RegistrationController {
             try {
                 GuestDao dao = new GuestDaoSQLimpl();
                 listOfGuests = dao.getAll();
+                for(Guests x : listOfGuests){
+                    if(x.geteMail().equals(eMail.getText())){
+                        eMail.getStyleClass().removeAll("correctField");
+                        eMail.getStyleClass().add("wrongField");
+                        eMailError.setText("Email already in use!");
+                        System.out.println("Email already in use. Please try again.");
+                        return;
+                    }
+                }
+                guest.setFirstName(firstName.getText());
+                guest.setLastName(lastName.getText());
+                guest.seteMail(eMail.getText());
+                guest.setPassword(password.getText());
+
+                System.out.println("Your account has been registered!");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            for(Guests x : listOfGuests){
-                if(x.geteMail().equals(eMail.getText())){
-                    eMail.getStyleClass().removeAll("correctField");
-                    eMail.getStyleClass().add("wrongField");
-                    eMailError.setText("Email already in use!");
-                    System.out.println("Email already in use. Please try again.");
-                    return;
-                }
-            }
-            System.out.println("Successful registration!");
+
         }
     }
 
