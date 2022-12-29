@@ -95,6 +95,38 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         }
     }
 
+    /**
+     * Method that adds object into database
+     * @param item item to save in database
+     * @return object that is added into the database
+     */
+    public T add(T item){
+        Map<String, Object> row = object2row(item);
+        Map.Entry<String, String> columns = prepareInsertParts(row);
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("INSERT INTO ").append(this.tableName);
+        builder.append(" (").append(columns.getKey()).append(") ");
+        builder.append("VALUES (").append(columns.getValue()).append(")");
+
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
+            int counter = 1;
+            for (Map.Entry<String, Object> entry: row.entrySet()) {
+                if (entry.getKey().equals("id")) continue;
+                stmt.setObject(counter, entry.getValue());
+                counter++;
+            }
+            stmt.executeQuery();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            item.setId(rs.getInt(1));
+
+            return item;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     /**
