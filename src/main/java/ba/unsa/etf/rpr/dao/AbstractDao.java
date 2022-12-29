@@ -87,6 +87,21 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     }
 
     /**
+     * Method that deletes object with given id
+     * @param id - primary key of entity
+     */
+    public void delete(int id){
+        String query = "DELETE FROM" + this.tableName + "WHERE id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setObject(1, id);
+            stmt.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
      * Method that executes any kind of query
      * @param query query to be executed
      * @param params parameters for query
