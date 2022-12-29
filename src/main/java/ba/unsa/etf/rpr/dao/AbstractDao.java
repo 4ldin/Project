@@ -133,7 +133,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
      * @param item - object to be updated
      * @return updated object
      */
-    public T update(T item){
+    public T update(T item, int id){
         Map<String, Object> row = object2row(item);
         String updateColumns = prepareUpdateParts(row);
         StringBuilder builder = new StringBuilder();
@@ -146,7 +146,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
                 stmt.setObject(counter, entry.getValue());
                 counter++;
             }
-            stmt.setObject(counter, item.getId());
+            stmt.setObject(counter, id);
             stmt.executeUpdate();
             return item;
         } catch (SQLException e) {
