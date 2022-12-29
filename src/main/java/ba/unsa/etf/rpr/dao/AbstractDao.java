@@ -129,6 +129,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     }
 
 
+
     /**
      * Method that executes any kind of query
      * @param query query to be executed
@@ -191,4 +192,22 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         return new AbstractMap.SimpleEntry<>(columns.toString(), questions.toString());
     }
 
+    /**
+     * Method that prepares string for update statement
+     * @param row - row that gets converted into string
+     * @return string used in update statement
+     */
+    private String prepareUpdateParts(Map<String, Object> row){
+        StringBuilder columns = new StringBuilder();
+        int counter = 0;
+        for(Map.Entry<String, Object> entry : row.entrySet()){
+            counter++;
+            if(entry.getKey().equals("id")) continue;
+            columns.append(entry.getKey()).append("= ?");
+            if(row.size() != counter){
+                columns.append(",");
+            }
+        }
+        return columns.toString();
+    }
 }
