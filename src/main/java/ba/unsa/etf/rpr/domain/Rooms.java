@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Aldin Islamagic
  */
 
-public class Rooms {
+public class Rooms implements Idable{
 
     private int id;
     private boolean occupancy;
