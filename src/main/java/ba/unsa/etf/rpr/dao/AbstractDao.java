@@ -79,6 +79,14 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     }
 
     /**
+     * Method that returns gets all objects from table in db
+     * @return list of object
+     */
+    public List<T> getAll(){
+        return executeQuery("SELECT * FROM" + this.tableName, null);
+    }
+
+    /**
      * Method that executes any kind of query
      * @param query query to be executed
      * @param params parameters for query
