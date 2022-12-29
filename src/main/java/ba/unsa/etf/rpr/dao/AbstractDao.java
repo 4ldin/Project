@@ -75,7 +75,6 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
      * @param params parameters for query
      * @return list of results of the given query
      */
-
     public List<T> executeQuery(String query, Object[] params){
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
@@ -92,6 +91,21 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
             return resultList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Method that executes query that witch result is only one object
+     * @param query query to be executed
+     * @param params parameters for query
+     * @return result of the query
+     */
+    public T executeQueryUnique(String query, Object[] params){
+        List<T> result = executeQuery(query, params);
+        if(result != null && result.size() == 1){
+            return result.get(0);
+        }else{
+            return null;
         }
     }
 
