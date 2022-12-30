@@ -107,7 +107,7 @@ public class RegistrationController {
                 guest.setLastName(lastName.getText());
                 guest.seteMail(eMail.getText());
                 guest.setPassword(password.getText());
-
+                dao.add(guest);
                 System.out.println("Your account has been registered!");
                 returnClick();
             } catch (IOException e) {
