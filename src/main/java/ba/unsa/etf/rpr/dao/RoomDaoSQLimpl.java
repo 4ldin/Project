@@ -8,6 +8,7 @@ import ba.unsa.etf.rpr.domain.Rooms;
 import java.sql.*;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class RoomDaoSQLimpl extends AbstractDao<Rooms> implements RoomDao{
 
@@ -38,9 +39,19 @@ public class RoomDaoSQLimpl extends AbstractDao<Rooms> implements RoomDao{
         }
     }
 
+    /**
+     * Method that turns given object to sql query
+     * @param object a bean object for a specific table
+     * @return Map of object
+     */
     @Override
     public Map<String, Object> object2row(Rooms object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("Room_id", object.getId());
+        row.put("Occupancy", object.getOccupancy());
+        row.put("Reservations_id", object.getReservation().getId());
+        row.put("Room_Type_id", object.getRoomType().getId());
+        return row;
     }
 
     public Guests getGuestById(int id){
