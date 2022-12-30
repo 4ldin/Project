@@ -7,10 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class ReservationsDaoSQLimpl extends AbstractDao<Reservations> implements ReservationsDao{
 
@@ -45,9 +42,21 @@ public class ReservationsDaoSQLimpl extends AbstractDao<Reservations> implements
 
     }
 
+    /**
+     * Method that turns given object to sql query
+     * @param object a bean object for a specific table
+     * @return Map of object
+     */
     @Override
     public Map<String, Object> object2row(Reservations object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("Reservation_id", object.getId());
+        row.put("Reservation_date", object.getReservationDate());
+        row.put("Arrival_date", object.getArrivalDate());
+        row.put("Check_out_date", object.getCheckOutDate());
+        row.put("Num_persons", object.getNumPersons());
+        row.put("Guest_id", object.getGuest().getId());
+        return row;
     }
 
     /**
