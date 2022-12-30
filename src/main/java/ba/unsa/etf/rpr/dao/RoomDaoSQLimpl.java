@@ -5,14 +5,9 @@ import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.RoomTypes;
 import ba.unsa.etf.rpr.domain.Rooms;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 public class RoomDaoSQLimpl extends AbstractDao<Rooms> implements RoomDao{
 
@@ -24,9 +19,23 @@ public class RoomDaoSQLimpl extends AbstractDao<Rooms> implements RoomDao{
         super("Rooms");
     }
 
+    /**
+     * Method that sets parems. of room from given attribute
+     * @param rs result set from database
+     * @return room object
+     */
     @Override
     public Rooms row2object(ResultSet rs) throws SQLException {
-        return null;
+        try {
+            Rooms room = new Rooms();
+            room.setId(rs.getInt("Room_id"));
+            room.setOccupancy(rs.getBoolean("Occupancy"));
+            room.setReservation(new ReservationsDaoSQLimpl().getById(rs.getInt("Reservations_id")));
+            room.setRoomType(new RoomTypeDaoSQLimpl().getById(rs.getInt("Room_type_id")));
+            return room;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
