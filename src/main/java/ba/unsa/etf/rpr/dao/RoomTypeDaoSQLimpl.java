@@ -14,9 +14,22 @@ public class RoomTypeDaoSQLimpl extends AbstractDao<RoomTypes> implements RoomTy
         super("Room_Types");
     }
 
+    /**
+     * Method that sets parems. of room from given attribute
+     * @param rs result set from database
+     * @return room_type object
+     */
     @Override
-    public RoomTypes row2object(ResultSet rs) throws SQLException {
-        return null;
+    public RoomTypes row2object(ResultSet rs) {
+        try {
+            RoomTypes roomType = new RoomTypes();
+            roomType.setId(rs.getInt("Room_type_id"));
+            roomType.setRoomType(rs.getString("Room_Type"));
+            roomType.setPrice(rs.getDouble("Room_price"));
+            return roomType;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
