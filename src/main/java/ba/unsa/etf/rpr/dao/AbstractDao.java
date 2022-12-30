@@ -103,13 +103,11 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     public T add(T item){
         Map<String, Object> row = object2row(item);
         Map.Entry<String, String> columns = prepareInsertParts(row);
-
         StringBuilder builder = new StringBuilder();
-        builder.append("INSERT INTO ").append(this.tableName);
+        builder.append("INSERT INTO ").append(tableName);
         builder.append(" (").append(columns.getKey()).append(") ");
         builder.append("VALUES (").append(columns.getValue()).append(")");
-
-        try {
+        try{
             PreparedStatement stmt = getConnection().prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
             int counter = 1;
             for (Map.Entry<String, Object> entry: row.entrySet()) {
@@ -117,13 +115,12 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
                 stmt.setObject(counter, entry.getValue());
                 counter++;
             }
-            stmt.executeQuery();
+            stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             item.setId(rs.getInt(1));
-
             return item;
-        } catch (SQLException e) {
+        }catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
