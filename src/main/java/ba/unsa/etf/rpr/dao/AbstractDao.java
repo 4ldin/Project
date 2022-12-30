@@ -69,7 +69,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
      * @return object with given id
      */
     public T getById(int id){
-        return executeQueryUnique("SELECT * FROM " + this.tableName + "WHERE id = ?", new Object[]{id});
+        return executeQueryUnique("SELECT * FROM " + this.tableName + " WHERE id = ?", new Object[]{id});
     }
 
     /**
@@ -77,7 +77,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
      * @return list of object
      */
     public List<T> getAll(){
-        return executeQuery("SELECT * FROM" + this.tableName, null);
+        return executeQuery("SELECT * FROM " + this.tableName, null);
     }
 
     /**
@@ -85,7 +85,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
      * @param id - primary key of entity
      */
     public void delete(int id){
-        String query = "DELETE FROM" + this.tableName + "WHERE id = ?";
+        String query = "DELETE FROM " + this.tableName + " WHERE id = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setObject(1, id);
@@ -163,7 +163,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
      */
     public List<T> executeQuery(String query, Object[] params){
         try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
+            PreparedStatement stmt = getConnection().prepareStatement(query);
             if(params != null){
                 for(int i = 1; i <= params.length; i++){
                     stmt.setObject(i, params[i-1]);
@@ -171,7 +171,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
             }
             ResultSet rs = stmt.executeQuery();
             ArrayList<T> resultList = new ArrayList<>();
-            if(rs.next()){
+            while(rs.next()){
                 resultList.add(row2object(rs));
             }
             return resultList;
