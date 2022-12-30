@@ -6,10 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class GuestDaoSQLimpl extends AbstractDao<Guests> implements GuestDao{
 
@@ -38,9 +35,20 @@ public class GuestDaoSQLimpl extends AbstractDao<Guests> implements GuestDao{
 
     }
 
+    /**
+     * Method that turns given object to sql query
+     * @param object a bean object for a specific table
+     * @return Map of object
+     */
     @Override
     public Map<String, Object> object2row(Guests object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("Guest_id", object.getId());
+        row.put("First_name", object.getFirstName());
+        row.put("Last_name", object.getLastName());
+        row.put("eMail", object.geteMail());
+        row.put("password", object.getPassword());
+        return row;
     }
 
 
