@@ -17,9 +17,25 @@ public class GuestDaoSQLimpl extends AbstractDao<Guests> implements GuestDao{
         super("Guests");
     }
 
+    /**
+     * Method that sets parems. of guest from given attribute
+     * @param rs result set from database
+     * @return guest object
+     */
     @Override
-    public Guests row2object(ResultSet rs) throws SQLException {
-        return null;
+    public Guests row2object(ResultSet rs){
+        try {
+            Guests guest = new Guests();
+            guest.setId(rs.getInt("Guest_id"));
+            guest.setFirstName(rs.getString("First_name"));
+            guest.setLastName(rs.getString("Last_name"));
+            guest.seteMail(rs.getString("eMail"));
+            guest.setPassword(rs.getString("password"));
+            return guest;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
