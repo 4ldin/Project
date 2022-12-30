@@ -23,9 +23,26 @@ public class ReservationsDaoSQLimpl extends AbstractDao<Reservations> implements
     }
 
 
+    /**
+     * Method that sets parems. of guest from given attribute
+     * @param rs result set from database
+     * @return reservation object
+     */
     @Override
-    public Reservations row2object(ResultSet rs) throws SQLException {
-        return null;
+    public Reservations row2object(ResultSet rs){
+        try {
+            Reservations reservation = new Reservations();
+            reservation.setId(rs.getInt("Reservation_id"));
+            reservation.setReservationDate(rs.getDate("Reservation_date"));
+            reservation.setArrivalDate(rs.getDate("Arrival_date"));
+            reservation.setCheckOutDate(rs.getDate("Check_out_date"));
+            reservation.setNumPersons(rs.getInt("Num_persons"));
+            reservation.setGuest(new GuestDaoSQLimpl().getById(rs.getInt("Guest_id")));
+            return reservation;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
