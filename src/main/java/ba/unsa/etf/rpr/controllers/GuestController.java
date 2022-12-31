@@ -42,7 +42,7 @@ public class GuestController {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/makeReservation.fxml"));
         Parent root = loader.load();
-        stage.setTitle("Registration");
+        stage.setTitle("Make Reservation");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();
